@@ -1,0 +1,43 @@
+@import "src/app/launch-table/launch-table.component";
+@import "src/styles";
+
+/*
+ * Table Row styling for launch table
+ */
+.table_row {
+  padding: 0 5px;
+  cursor: pointer;
+  @include tableGrid(0.2);
+
+  .table_col_item {
+    padding: 5px;
+    border-right: 1px solid rgba(0, 0, 0, .3);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, .05);
+  }
+}
+/*
+ * Error message styling for when there is no press pack
+ */
+.error_warning {
+  position: absolute;
+  padding: 20px 20px 10px;
+  height: 50px;
+  border: 1px solid $primary-text;
+  background: $secondary;
+  top: 25%;
+  left: 45%;
+  border-radius: 2px;
+
+  .close_error {
+    width: 100%;
+    margin: 10px auto;
+    @include buttonStyling;
+  }
+}

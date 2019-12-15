@@ -1,0 +1,63 @@
+@import "src/styles";
+
+/*
+ * grid layout for the table header and body
+ */
+@mixin tableGrid($borderOpacity) {
+  display: grid;
+  grid-template-columns: .4fr .4fr .5fr 2fr;
+  border-bottom: 1px solid rgba(0, 0, 0, $borderOpacity);
+}
+
+.launch_table_container {
+  background: $secondary;
+  padding: 10px;
+
+  .table_title, .table_instructions {
+    color: $primary-text;
+  }
+
+  .table_title {
+    margin-bottom: 5px;
+  }
+
+  .table_instructions {
+    font-size: .9em;
+    margin-top: 3px;
+  }
+
+  /*
+   * Table Header Styling of Launch Results
+   */
+  .table_header {
+    @include tableGrid(0.5);
+    padding: 5px 0;
+    background: $primary;
+    color: $secondary;
+
+    .table_col_header {
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+  /**
+   * Table Pagination Stying
+   */
+  .table_pagination {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: .1fr 1fr .1fr;
+
+    .table_pagination_btn {
+      @include buttonStyling;
+    }
+
+    h4 {
+      text-align: center;
+      margin: 6px 0;
+    }
+  }
+}
+

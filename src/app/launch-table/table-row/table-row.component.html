@@ -1,0 +1,13 @@
+<div class="table_row" (click)="onRowClick()">
+  <span class="table_col_item">{{launch.flight_number}}</span>
+  <span class="table_col_item">{{launch.launch_year}}</span>
+  <span class="table_col_item">{{launch.rocket.rocket_name}}</span>
+  <span class="table_col_item">{{launch.details}}</span>
+</div>
+
+<div class="error_warning" *ngIf="errorOnPress">
+  <div>
+    No Press Kit Available
+  </div>
+  <button class="close_error" (click)="closeError()">Close</button>
+</div>

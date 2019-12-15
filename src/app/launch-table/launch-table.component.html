@@ -1,0 +1,21 @@
+<div class="launch_table_container">
+  <h2 class="table_title">{{title}}</h2>
+  <p class="table_instructions">Click a row to view the press kit for a specific launch.</p>
+  <div class="table_content">
+    <div class="table_header">
+      <span class="table_col_header" (click)="toggleLaunchOrderSorting('flight_number')">Flight Number</span>
+      <span class="table_col_header" (click)="toggleLaunchOrderSorting('launch_year')">Launch Year</span>
+      <span class="table_col_header" (click)="toggleLaunchOrderSorting('rocket_name')">Rocket Name</span>
+      <span class="table_col_header">Details</span>
+    </div>
+    <div class="table_body" *ngFor="let launch of (getLaunches())">
+      <app-table-row [launch]="launch"></app-table-row>
+    </div>
+    <div class="table_pagination">
+      <button [disabled]="page <= 1" (click)="onPreviousClick()" class="table_pagination_btn prev">‹ Prev</button>
+      <h4 class="table_pagination_summary">Page {{page}} of {{pages}}</h4>
+      <button [disabled]="page == pages || pages <= 1" (click)="onNextClick()" class="table_pagination_btn next">Next ›</button>
+    </div>
+  </div>
+</div>
+

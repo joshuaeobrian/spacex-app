@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import {browser, by, element} from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -6,6 +6,17 @@ export class AppPage {
   }
 
   getTitleText() {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+    return element(by.css('app-root .table_title')).getText() as Promise<string>;
+  }
+
+  clickNext() {
+    return element(by.css('.table_pagination_btn.next')).click();
+  }
+  clickPrev() {
+    return element(by.css('.table_pagination_btn.prev')).click();
+  }
+
+  getPageLocation() {
+    return element(by.css('.table_pagination .table_pagination_summary')).getText() as Promise<string>;
   }
 }

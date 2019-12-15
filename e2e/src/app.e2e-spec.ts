@@ -1,16 +1,26 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('spaceX-app e2e', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display table with Title', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('spacex-app app is running!');
+    expect(page.getTitleText()).toEqual('SpaceX Launches');
+  });
+  it('should navigate through the pages', () => {
+    page.navigateTo();
+    page.clickNext();
+    expect(page.getPageLocation()).toContain('Page 2 of');
+    page.clickNext();
+    expect(page.getPageLocation()).toContain('Page 3 of');
+    page.clickPrev();
+    page.clickPrev();
+    expect(page.getPageLocation()).toContain('Page 1 of');
   });
 
   afterEach(async () => {

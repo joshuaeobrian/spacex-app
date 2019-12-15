@@ -1,11 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {LaunchTableComponent} from './launch-table/launch-table.component';
+import {TableRowComponent} from './launch-table/table-row/table-row.component';
+import {LaunchTableService} from './launch-table/launch-table.service';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule
+      ],
+      providers: [LaunchTableService],
       declarations: [
-        AppComponent
+        AppComponent, LaunchTableComponent, TableRowComponent
       ],
     }).compileComponents();
   }));
@@ -20,12 +28,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('spacex-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('spacex-app app is running!');
   });
 });
