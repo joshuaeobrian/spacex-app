@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Launch} from './launch-table.model';
+import {Launch, Rocket} from './launch-table.model';
 import {LaunchTableService} from './launch-table.service';
 
 @Component({
@@ -50,26 +50,32 @@ export class LaunchTableComponent implements OnInit {
   }
 
   /**
+   * @description takes two Rocket items and compares the name then return 1, -1, 0 depending on the value
+   */
+  rocketSortOrder(rocket1: Rocket, rocket2: Rocket) {
+    if (rocket1.rocket_name <= rocket2.rocket_name) {
+      return 1;
+    } else if (rocket1.rocket_name >= rocket2.rocket_name) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
+  /**
    * @description sorts all launches by selected column by asc or desc depending on orderByAsc Value
    */
   getSortedLaunches(): Launch[] {
     const orderBy = this.orderBy;
     return this.launches.sort((current, next) => {
       if (orderBy === 'rocket_name') {
+        let order;
         if (!this.orderByAsc) {
-          if (current.rocket.rocket_name <= next.rocket.rocket_name) {
-            return 1;
-          } else if (current.rocket.rocket_name >= next.rocket.rocket_name) {
-            return -1;
-          }
+          order = this.rocketSortOrder(current.rocket, next.rocket);
         } else {
-          if (current.rocket.rocket_name >= next.rocket.rocket_name) {
-            return 1;
-          } else if (current.rocket.rocket_name <= next.rocket.rocket_name) {
-            return -1;
-          }
+          order = this.rocketSortOrder(next.rocket, current.rocket);
         }
-        return 0;
+        return order;
       } else {
         if (!this.orderByAsc) {
           return next[orderBy] - current[orderBy];
