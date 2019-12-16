@@ -50,7 +50,8 @@ export class LaunchTableComponent implements OnInit {
   }
 
   /**
-   * @description takes two Rocket items and compares the name then return 1, -1, 0 depending on the value
+   * @description takes two Rocket items and compares the name then return 1 or -1
+   * if then conditions meet else we return 0
    */
   rocketSortOrder(rocket1: Rocket, rocket2: Rocket) {
     if (rocket1.rocket_name <= rocket2.rocket_name) {
